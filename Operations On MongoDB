@@ -1,0 +1,55 @@
+//db creation
+use userdb;
+
+//collection creation
+db.createCollection("users")
+//insert one record
+db.users.insertOne({
+  name: "Roopak",
+  age: 20,
+  college: "SECE",
+  rollNo: "21CS118"
+});
+
+//insert many records
+db.users.insertMany([
+    {
+        name: "Rithish",
+        age: 20,
+        college: "SECE",
+        rollNo: "21CS117"
+    },
+    {
+        name: "Saran",
+        age: 19,
+        college: "SECE",
+        rollNo: "21CS127"
+    }
+]);
+
+//display records
+db.users.find()
+
+//displaying based on condition
+db.users.find({ age: { $gte: 20 } })
+
+//display only one record
+db.users.findOne({ name: "Roopak" })
+
+//update only one record
+db.users.updateOne({ name: "Saran" }, { $set: { age: 18 } })
+
+//update multiple records
+db.users.updateMany({ age : 20 } }, { $set: { status: "active" } })
+
+//delete only one record
+db.users.deleteOne({ name: "Rithish" })
+
+//delete multiple records
+db.users.deleteMany({ age: { $lt: 30 } })
+
+//Delete Collection
+db.users.drop()
+
+//Delete DataBase
+db.dropDatabase()
